@@ -16,63 +16,66 @@ namespace Battleship
         #region Methods
         /// <summary>
         /// Add ship to the board of the player
-        /// Will check if the ship fits and the square are not occupied
         /// </summary>
-        /// <param name="ship">
-        /// Ship to add
-        /// </param>
+        /// <param name="ship"></param>
         /// <param name="point">
         /// First square used by the ship (top-most if vertical, left-most if horizontal) 
         /// </param>
         /// <returns></returns>
-        public bool TryAddShip(Ship ship, Point point)
+        public void AddShip(Ship ship, Point point)
         {
-            // Check if the Point is on the board
-            if (point.Row > board.Size || point.Column > board.Size)
-                return false;
-
-            // Check if the Ship fits on the board
-            if (ship.Orientation == Orientation.Vertical && (point.Row + ship.Length - 1) > board.Size
-                || ship.Orientation == Orientation.Horizontal && (point.Column + ship.Length - 1) > board.Size)
-                return false;
-
-            // Add ship on the board if squared are not occupied
-            var tmp = board.Clone();
+            CheckPoint(point);
+            CheckShip(ship, point);
+            CheckSquareOccupied(ship, point);
 
             if (ship.Orientation == Orientation.Vertical)
                 for (var row = point.Row; row < point.Row + ship.Length - 1; row++)
-                    if (tmp.Matrix[row, point.Column].Occupied)
-                        return false;
-                    else
-                        tmp.Matrix[row, point.Column].Occupied = true;
+                    board.Matrix[row, point.Column].Occupied = true;
             else if (ship.Orientation == Orientation.Horizontal)
                 for (var col = point.Column; col < point.Column + ship.Length - 1; col++)
-                    if (tmp.Matrix[point.Row, col].Occupied)
-                        return false;
-                    else
-                        tmp.Matrix[point.Row, col].Occupied = true;
+                    board.Matrix[point.Row, col].Occupied = true;
 
             ships.Add(ship);
-            board = tmp;
-            return true;
         }
 
         public bool Attack(Point point)
         {
-            // Check if the Point is on the board
+            CheckPoint(point);
+            attacks.Add(point);
+            board.Matrix[point.Row, point.Column].Hit = true;
+            return board.Matrix[point.Row, point.Column].Occupied;
+        }
+
+        private void CheckPoint(Point point)
+        {
+            // Check if the point is on the board
             if (point.Row > board.Size || point.Column > board.Size)
                 throw new ArgumentOutOfRangeException(
-                    string.Format("Coordinates of the point {0} be inferior to the size of the board{3}", point.ToString()));
+                    string.Format(Resource.ExceptionPointOutOfBoard, point.ToString()));
 
-            attacks.Add(point);
-            if (board.Matrix[point.Row, point.Column].Occupied)
-            {
-                board.Matrix[point.Row, point.Column].Hit = true;
-                return true;
-            }
-            else
-                return false;
+        }
 
+        private void CheckShip(Ship ship, Point point)
+        {
+            // Check if the Ship fits on the board
+            if (ship.Orientation == Orientation.Vertical && (point.Row + ship.Length - 1) > board.Size
+                || ship.Orientation == Orientation.Horizontal && (point.Column + ship.Length - 1) > board.Size)
+                throw new ArgumentOutOfRangeException(Resource.ExceptionShipOutOfBoard); // Make the error message more useful
+        }
+
+        private void CheckSquareOccupied(Ship ship, Point point)
+        {
+            if (ship.Orientation == Orientation.Vertical)
+                for (var row = point.Row; row < point.Row + ship.Length - 1; row++)
+                    if (board.Matrix[row, point.Column].Occupied)
+                        throw new ArgumentOutOfRangeException(
+                            string.Format(Resource.ExceptionSquareIsOccupied, point.ToString()));
+
+            if (ship.Orientation == Orientation.Horizontal)
+                for (var col = point.Column; col < point.Column + ship.Length - 1; col++)
+                    if (board.Matrix[point.Row, col].Occupied)
+                        throw new ArgumentOutOfRangeException(
+                            string.Format(Resource.ExceptionSquareIsOccupied, point.ToString()));
         }
         #endregion
     }

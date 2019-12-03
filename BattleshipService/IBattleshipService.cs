@@ -1,8 +1,10 @@
-﻿namespace Battleship
+﻿namespace BattleshipService
 {
-    public interface IGameService
+    using Battleship;
+
+    public interface IBattleshipService
     {
-        void Create();
+        void NewGame();
 
         void AddShip(Player player, Ship ship, Point point);
 
