@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Battleship
 {
     public class Player
     {
         #region Properties
-        private Board board = new Board();
-
-        private List<Ship> ships = new List<Ship>();
-
-        private List<Point> attacks = new List<Point>();
+        private static int size = 10;
+        private bool[,] ships = new bool[size, size];   // False if empty, True if occupied
+        private bool[,] hits = new bool[size, size];    // True if was hit
+        private int points = 0;                         // if number of points falls to zero player has lost
+        public bool HasLost => points == 0;             // Player has lost when points had dropped to zero
         #endregion
 
         #region Methods
@@ -30,26 +29,30 @@ namespace Battleship
 
             if (ship.Orientation == Orientation.Vertical)
                 for (var row = point.Row; row < point.Row + ship.Length - 1; row++)
-                    board.Matrix[row, point.Column - 1].Occupied = true;
+                    ships[row, point.Column - 1] = true;
             else if (ship.Orientation == Orientation.Horizontal)
                 for (var col = point.Column; col < point.Column + ship.Length - 1; col++)
-                    board.Matrix[point.Row - 1, col].Occupied = true;
+                    ships[point.Row - 1, col] = true;
 
-            ships.Add(ship);
+            points += ship.Length; // Every ship's length counts towards the player's points
         }
 
         public bool Attack(Point point)
         {
             CheckPoint(point);
-            attacks.Add(point);
-            board.Matrix[point.Row, point.Column].Hit = true;
-            return board.Matrix[point.Row, point.Column].Occupied;
+            var occupied = ships[point.Row, point.Column];
+            var hit = hits[point.Row, point.Column];
+            if (occupied && !hit) points--; // Every successful first hit decrease the points of the player
+            hits[point.Row, point.Column] = true;
+            return occupied;
         }
+        #endregion
 
+        #region Private methods
         private void CheckPoint(Point point)
         {
             // Check if the point is on the board
-            if (point.Row > board.Size || point.Column > board.Size)
+            if (point.Row > size || point.Column > size)
                 throw new ArgumentOutOfRangeException(
                     string.Format(Resource.ExceptionPointOutOfBoard, point.ToString()));
 
@@ -58,8 +61,8 @@ namespace Battleship
         private void CheckShip(Ship ship, Point point)
         {
             // Check if the Ship fits on the board
-            if (ship.Orientation == Orientation.Vertical && (point.Row + ship.Length - 1) > board.Size
-                || ship.Orientation == Orientation.Horizontal && (point.Column + ship.Length - 1) > board.Size)
+            if (ship.Orientation == Orientation.Vertical && (point.Row + ship.Length - 1) > size
+                || ship.Orientation == Orientation.Horizontal && (point.Column + ship.Length - 1) > size)
                 throw new ArgumentOutOfRangeException(Resource.ExceptionShipOutOfBoard); // Make the error message more useful
         }
 
@@ -67,13 +70,13 @@ namespace Battleship
         {
             if (ship.Orientation == Orientation.Vertical)
                 for (var row = point.Row; row < point.Row + ship.Length - 1; row++)
-                    if (board.Matrix[row, point.Column - 1].Occupied)
+                    if (ships[row, point.Column - 1])
                         throw new ArgumentOutOfRangeException(
                             string.Format(Resource.ExceptionSquareIsOccupied, point.ToString()));
 
             if (ship.Orientation == Orientation.Horizontal)
                 for (var col = point.Column; col < point.Column + ship.Length - 1; col++)
-                    if (board.Matrix[point.Row - 1, col].Occupied)
+                    if (ships[point.Row - 1, col])
                         throw new ArgumentOutOfRangeException(
                             string.Format(Resource.ExceptionSquareIsOccupied, point.ToString()));
         }

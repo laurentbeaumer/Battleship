@@ -6,8 +6,12 @@
     {
         void NewGame();
 
-        void AddShip(Player player, Ship ship, Point point);
+        void NextPlayer();
 
-        bool Attack(Player player, Point point);
+        string CurrentPlayer { get; }
+
+        void AddShip(Ship ship, Point point);
+
+        bool Attack(Point point);
     }
 }
