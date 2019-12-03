@@ -65,7 +65,14 @@ namespace Battleship
                     string.Format("Coordinates of the point {0} be inferior to the size of the board{3}", point.ToString()));
 
             attacks.Add(point);
-            return true;
+            if (board.Matrix[point.Row, point.Column].Occupied)
+            {
+                board.Matrix[point.Row, point.Column].Hit = true;
+                return true;
+            }
+            else
+                return false;
+
         }
         #endregion
     }
