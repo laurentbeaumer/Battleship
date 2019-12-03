@@ -12,5 +12,7 @@
         public Player Player1 = new Player();
 
         public Player Player2 = new Player();
+
+        private bool turn = true; // True = Player 1, False = Player 2 
     }
 }

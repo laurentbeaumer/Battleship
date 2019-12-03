@@ -30,10 +30,10 @@ namespace Battleship
 
             if (ship.Orientation == Orientation.Vertical)
                 for (var row = point.Row; row < point.Row + ship.Length - 1; row++)
-                    board.Matrix[row, point.Column].Occupied = true;
+                    board.Matrix[row, point.Column - 1].Occupied = true;
             else if (ship.Orientation == Orientation.Horizontal)
                 for (var col = point.Column; col < point.Column + ship.Length - 1; col++)
-                    board.Matrix[point.Row, col].Occupied = true;
+                    board.Matrix[point.Row - 1, col].Occupied = true;
 
             ships.Add(ship);
         }
@@ -67,13 +67,13 @@ namespace Battleship
         {
             if (ship.Orientation == Orientation.Vertical)
                 for (var row = point.Row; row < point.Row + ship.Length - 1; row++)
-                    if (board.Matrix[row, point.Column].Occupied)
+                    if (board.Matrix[row, point.Column - 1].Occupied)
                         throw new ArgumentOutOfRangeException(
                             string.Format(Resource.ExceptionSquareIsOccupied, point.ToString()));
 
             if (ship.Orientation == Orientation.Horizontal)
                 for (var col = point.Column; col < point.Column + ship.Length - 1; col++)
-                    if (board.Matrix[point.Row, col].Occupied)
+                    if (board.Matrix[point.Row - 1, col].Occupied)
                         throw new ArgumentOutOfRangeException(
                             string.Format(Resource.ExceptionSquareIsOccupied, point.ToString()));
         }
