@@ -8,7 +8,7 @@
 
         void NextPlayer();
 
-        string CurrentPlayer { get; }
+        string CurrentPlayerName { get; }
 
         void AddShip(Ship ship, Point point);
 

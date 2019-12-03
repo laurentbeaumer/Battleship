@@ -1,10 +1,13 @@
 ﻿namespace BattleshipService
 {
+    using System;
     using Battleship;
 
     public class BattleshipService : IBattleshipService
     {
-        Game battleship = new Game();
+        private Game game = new Game();
+
+        public string CurrentPlayerName => game.CurrentPlayerName;
 
         public void AddShip(Player player, Ship ship, Point point)
         {
@@ -19,7 +22,21 @@
         // Reset Game
         public void NewGame()
         {
-            battleship = new Game();
+            game = new Game();
+        }
+
+        public void AddShip(Ship ship, Point point) => game.AddShip(ship, point);
+
+        public bool Attack(Point point) => game.Attack(point);
+
+        void IBattleshipService.NewGame()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IBattleshipService.NextPlayer()
+        {
+            throw new NotImplementedException();
         }
     }
 }

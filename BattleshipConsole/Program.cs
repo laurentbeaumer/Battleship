@@ -6,12 +6,14 @@
     {
         static void Main(string[] args)
         {
+            bool quit = false;
             var game = new Game();
+
             do
             {
 
             }
-            while (game.NextPlayer());
+            while (!quit && game.NextPlayer());
         }
     }
 }

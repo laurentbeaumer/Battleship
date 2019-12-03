@@ -9,25 +9,40 @@
 
     public class Game
     {
-        private Player[] players = new Player[] { new Player(), new Player() };
+        #region Properties
+        private const int defaultSize = 10;
+
+        private Player[] players;
 
         private bool firstPlayer = true; // True = Player 1, False = Player 2 
 
-        private Player GetCurrentPlayer() => players[firstPlayer ? 1 : 0];
+        private Player GetCurrentPlayer => players[firstPlayer ? 1 : 0];
 
-        private Player GetOtherPlayer() => players[firstPlayer ? 0 : 1];
+        private Player GetOtherPlayer => players[firstPlayer ? 0 : 1];
 
-        public string CurrentPlayer => string.Format("Player {0}", firstPlayer ? 1 : 2);
+        public string CurrentPlayerName => string.Format("Player {0}", firstPlayer ? 1 : 2);
+        #endregion
 
-        public void AddShip(Ship ship, Point point) => GetCurrentPlayer().AddShip(ship, point);
+        #region Contructors
+        public Game() : this(defaultSize) { }
 
-        public void Attack(Point point) => GetOtherPlayer().Attack(point);
+        public Game(int size)
+        {
+            players = new Player[] { new Player(size), new Player(size) };
+        }
+        #endregion
+
+        #region Methods
+        public void AddShip(Ship ship, Point point) => GetCurrentPlayer.AddShip(ship, point);
+
+        public bool Attack(Point point) => GetOtherPlayer.Attack(point);
 
         public bool NextPlayer()
         {
-            if (GetOtherPlayer().HasLost) return false;
+            if (GetOtherPlayer.HasLost) return false;
             firstPlayer = !firstPlayer;
             return true;
         }
+        #endregion
     }
 }

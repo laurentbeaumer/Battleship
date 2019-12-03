@@ -5,14 +5,24 @@ namespace Battleship
     public class Player
     {
         #region Properties
-        private static int size = 10;
-        private bool[,] ships = new bool[size, size];   // False if empty, True if occupied
-        private bool[,] hits = new bool[size, size];    // True if was hit
-        private int points = 0;                         // if number of points falls to zero player has lost
-        public bool HasLost => points == 0;             // Player has lost when points had dropped to zero
+        public readonly int Size;
+        public bool HasLost => points == 0; // Player has lost when points had dropped to zero
+
+        private bool[,] ships;              // False if empty, True if occupied
+        private bool[,] hits;               // True if was hit
+        private int points = 0;             // if number of points falls to zero player has lost
         #endregion
 
-        #region Methods
+        #region Contructors
+        public Player(int size)
+        {
+            Size = size;
+            ships = new bool[Size, Size];
+            hits = new bool[Size, Size];
+        }
+        #endregion
+
+        #region Public Methods
         /// <summary>
         /// Add ship to the board of the player
         /// </summary>
@@ -52,7 +62,7 @@ namespace Battleship
         private void CheckPoint(Point point)
         {
             // Check if the point is on the board
-            if (point.Row > size || point.Column > size)
+            if (point.Row > Size || point.Column > Size)
                 throw new ArgumentOutOfRangeException(
                     string.Format(Resource.ExceptionPointOutOfBoard, point.ToString()));
 
@@ -61,8 +71,8 @@ namespace Battleship
         private void CheckShip(Ship ship, Point point)
         {
             // Check if the Ship fits on the board
-            if (ship.Orientation == Orientation.Vertical && (point.Row + ship.Length - 1) > size
-                || ship.Orientation == Orientation.Horizontal && (point.Column + ship.Length - 1) > size)
+            if (ship.Orientation == Orientation.Vertical && (point.Row + ship.Length - 1) > Size
+                || ship.Orientation == Orientation.Horizontal && (point.Column + ship.Length - 1) > Size)
                 throw new ArgumentOutOfRangeException(Resource.ExceptionShipOutOfBoard); // Make the error message more useful
         }
 
