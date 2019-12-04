@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BattleshipService
+﻿namespace BattleshipService
 {
     using Battleship;
 
