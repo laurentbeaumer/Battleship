@@ -39,7 +39,6 @@ while(!finished)
 }
 service.NextPlayer();
 
-service.NextPlayer()
 // Player 1 start attacking
 do
 {
