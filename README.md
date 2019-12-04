@@ -23,7 +23,7 @@ The APi is made to be used in while loops:
 
 ```C#
 var service = new BattleshipService();
-bool finished;
+bool finished, quit;
 
 //  Add ships player 1
 while(!finished) 
@@ -34,7 +34,7 @@ while(!finished)
 service.NextPlayer();
 
 //  Add ships player 2
-while(!finished) 
+while(!quit && !finished) 
 {
   // Get user's input
   // service.AddShip(new Ship() { ... }, new Point { ... } );
@@ -47,7 +47,7 @@ do
   // Get user's input
   // service.Attack(new Point() { ... } )
 }
-while (service.NextPlayer()); // Will return false if the player has won.
+while (!quit && service.NextPlayer()); // Will return false if the player has won.
 ```
 The code will throw an exception if the "attacked" position is outside the board, or by adding a ship where it doesn't fit, or on the top of an existing ship.
 
