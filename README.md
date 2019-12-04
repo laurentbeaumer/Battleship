@@ -18,11 +18,7 @@ You can add either "Battleship" project as a library or use the service.
 The APi is made to be used in a do...while loop:
 
 >var service = new BattleshipService();
->//  Add ships player 1
 >
->//  Add ships player 2
->
->// Player 1 start attacking
 >do
 >{
 >// Get user's input
