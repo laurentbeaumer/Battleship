@@ -14,6 +14,6 @@
 
         void AddShip(Ship ship, Point point);
 
-        bool Attack(Point point);
+        string Attack(Point point);
     }
 }

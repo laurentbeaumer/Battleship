@@ -1,6 +1,7 @@
-﻿namespace BattleshipService
+﻿using System;
+
+namespace BattleshipService
 {
-    using System;
     using Battleship;
 
     public class BattleshipService : IBattleshipService
@@ -13,7 +14,7 @@
 
         public void AddShip(Ship ship, Point point) => game.AddShip(ship, point);
 
-        public bool Attack(Point point) => game.Attack(point);
+        public string Attack(Point point) => game.Attack(point);
 
         public bool NextPlayer() => game.NextPlayer();
 
