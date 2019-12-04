@@ -64,7 +64,7 @@ namespace Battleship
             // Check if the point is on the board
             if (point.Row > Size || point.Column > Size)
                 throw new ArgumentOutOfRangeException(
-                    string.Format(Resource.ExceptionPointOutOfBoard, point.ToString()));
+                    string.Format(Resource.ExceptionPointOutOfBoard, point.ToString(), Size));
 
         }
 

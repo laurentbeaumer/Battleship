@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ExceptionPointOutOfBoard" xml:space="preserve">
-    <value>"Coordinates of the point {0} be inferior to the size of the board{3}"</value>
+    <value>"Coordinates of the point {0} be inferior to the size of the board{1}"</value>
   </data>
   <data name="ExceptionShipOutOfBoard" xml:space="preserve">
-    <value>"Ship doesn't for on the board"</value>
+    <value>"Ship doesn't fit for on the board"</value>
   </data>
   <data name="ExceptionSquareIsOccupied" xml:space="preserve">
     <value>"There is already a ship on this placement: {0}"</value>

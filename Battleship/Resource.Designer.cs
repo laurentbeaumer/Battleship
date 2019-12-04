@@ -61,7 +61,7 @@ namespace Battleship {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Coordinates of the point {0} be inferior to the size of the board{3}&quot;.
+        ///   Looks up a localized string similar to &quot;Coordinates of the point {0} be inferior to the size of the board{1}&quot;.
         /// </summary>
         internal static string ExceptionPointOutOfBoard {
             get {
@@ -70,7 +70,7 @@ namespace Battleship {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Ship doesn&apos;t for on the board&quot;.
+        ///   Looks up a localized string similar to &quot;Ship doesn&apos;t fit for on the board&quot;.
         /// </summary>
         internal static string ExceptionShipOutOfBoard {
             get {
