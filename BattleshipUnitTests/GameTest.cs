@@ -14,35 +14,27 @@ namespace BattleshipUnitTests
         {
             var game = new Game();
             Debug.Print(game.CurrentPlayerName);
-
-            game.AddShip(new Ship { Orientation = Orientation.Horizontal, Length = 2 }, new Point { Row = 2, Column = 4 });
-            game.AddShip(new Ship { Orientation = Orientation.Horizontal, Length = 3 }, new Point { Row = 4, Column = 5 });
-            game.AddShip(new Ship { Orientation = Orientation.Vertical, Length = 3 }, new Point { Row = 5, Column = 2 });
-            game.AddShip(new Ship { Orientation = Orientation.Vertical, Length = 4 }, new Point { Row = 6, Column = 9 });
+            game.AddShip(new Ship { Orientation = Orientation.Horizontal, Length = 3 }, new Point { Row = 1, Column = 1 });
+            game.AddShip(new Ship { Orientation = Orientation.Horizontal, Length = 1 }, new Point { Row = 2, Column = 1 });
 
             game.NextPlayer();
             Debug.Print(game.CurrentPlayerName);
-
-            game.AddShip(new Ship { Orientation = Orientation.Vertical, Length = 2 }, new Point { Row = 5, Column = 2 });
-            game.AddShip(new Ship { Orientation = Orientation.Vertical, Length = 4 }, new Point { Row = 6, Column = 3 });
-            game.AddShip(new Ship { Orientation = Orientation.Horizontal, Length = 3 }, new Point { Row = 1, Column = 4 });
-            game.AddShip(new Ship { Orientation = Orientation.Horizontal, Length = 3 }, new Point { Row = 2, Column = 8 });
+            game.AddShip(new Ship { Orientation = Orientation.Vertical, Length = 2 }, new Point { Row = 1, Column = 2 });
 
             game.NextPlayer();
             Debug.Print(game.CurrentPlayerName);
-            game.Attack(new Point { Row = 2, Column = 4 });
+            Debug.Print(game.Attack(new Point { Row = 1, Column = 2 }));
+            Assert.IsFalse(game.HasWon);
 
             game.NextPlayer();
             Debug.Print(game.CurrentPlayerName);
-            game.Attack(new Point { Row = 1, Column = 5 });
+            Debug.Print(game.Attack(new Point { Row = 1, Column = 1 }));
+            Assert.IsFalse(game.HasWon);
 
             game.NextPlayer();
             Debug.Print(game.CurrentPlayerName);
-            game.Attack(new Point { Row = 4, Column = 8 });
-
-            game.NextPlayer();
-            Debug.Print(game.CurrentPlayerName);
-            game.Attack(new Point { Row = 7, Column = 2 });
+            Debug.Print(game.Attack(new Point { Row = 2, Column = 2 }));
+            Assert.IsTrue(game.HasWon);
         }
     }
 }
