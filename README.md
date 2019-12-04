@@ -44,8 +44,8 @@ service.NextPlayer();
 // Player 1 start attacking
 do
 {
-// Get user's input
-// service.Attack(new Point() { ... } )
+  // Get user's input
+  // service.Attack(new Point() { ... } )
 }
 while (service.NextPlayer()); // Will return false if the player has won.
 ```
