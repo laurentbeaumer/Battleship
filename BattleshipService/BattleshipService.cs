@@ -11,10 +11,6 @@
 
         public bool HasWon => game.HasWon;
 
-        public void AddShip(Player player, Ship ship, Point point) => player.AddShip(ship, point);
-
-        public bool Attack(Player player, Point point) => player.Attack(point);
-        
         public void AddShip(Ship ship, Point point) => game.AddShip(ship, point);
 
         public bool Attack(Point point) => game.Attack(point);
