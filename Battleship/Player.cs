@@ -6,11 +6,11 @@ namespace Battleship
     {
         #region Properties
         public readonly int Size;
-        public bool HasLost => points == 0; // Player has lost when points had dropped to zero
+        public bool HasLost => hitpoints == 0; // Player has lost when points had dropped to zero
 
         private bool[,] ships;              // False if empty, True if occupied
         private bool[,] hits;               // True if was hit
-        private int points = 0;             // if number of points falls to zero player has lost
+        private int hitpoints = 0;             // if number of points falls to zero player has lost
         #endregion
 
         #region Contructors
@@ -28,7 +28,7 @@ namespace Battleship
         /// </summary>
         /// <param name="ship"></param>
         /// <param name="point">
-        /// First square used by the ship (top-most if vertical, left-most if horizontal) 
+        /// First square used by the sship (top-most if vertical, left-most if horizontal) 
         /// </param>
         /// <returns></returns>
         public void AddShip(Ship ship, Point point)
@@ -38,22 +38,22 @@ namespace Battleship
             CheckSquareOccupied(ship, point);
 
             if (ship.Orientation == Orientation.Vertical)
-                for (var row = point.Row; row < point.Row + ship.Length - 1; row++)
+                for (var row = point.Row - 1; row < point.Row + ship.Length - 1; row++)
                     ships[row, point.Column - 1] = true;
             else if (ship.Orientation == Orientation.Horizontal)
-                for (var col = point.Column; col < point.Column + ship.Length - 1; col++)
+                for (var col = point.Column - 1; col < point.Column + ship.Length - 1; col++)
                     ships[point.Row - 1, col] = true;
 
-            points += ship.Length; // Every ship's length counts towards the player's points
+            hitpoints += ship.Length; // Every ship's length counts towards the player's points
         }
 
         public bool Attack(Point point)
         {
             CheckPoint(point);
-            var occupied = ships[point.Row, point.Column];
-            var hit = hits[point.Row, point.Column];
-            if (occupied && !hit) points--; // Every successful first hit decrease the points of the player
-            hits[point.Row, point.Column] = true;
+            var occupied = ships[point.Row - 1, point.Column - 1];
+            var hit = hits[point.Row - 1, point.Column - 1];
+            if (occupied && !hit) hitpoints--; // Every successful first hit decrease the points of the player
+            hits[point.Row - 1, point.Column - 1] = true;
             return occupied;
         }
         #endregion
@@ -79,13 +79,13 @@ namespace Battleship
         private void CheckSquareOccupied(Ship ship, Point point)
         {
             if (ship.Orientation == Orientation.Vertical)
-                for (var row = point.Row; row < point.Row + ship.Length - 1; row++)
+                for (var row = point.Row - 1; row < point.Row + ship.Length - 1; row++)
                     if (ships[row, point.Column - 1])
                         throw new ArgumentOutOfRangeException(
                             string.Format(Resource.ExceptionSquareIsOccupied, point.ToString()));
 
             if (ship.Orientation == Orientation.Horizontal)
-                for (var col = point.Column; col < point.Column + ship.Length - 1; col++)
+                for (var col = point.Column - 1; col < point.Column + ship.Length - 1; col++)
                     if (ships[point.Row - 1, col])
                         throw new ArgumentOutOfRangeException(
                             string.Format(Resource.ExceptionSquareIsOccupied, point.ToString()));

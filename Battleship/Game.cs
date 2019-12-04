@@ -37,13 +37,12 @@
         #region Methods
         public void AddShip(Ship ship, Point point) => GetCurrentPlayer.AddShip(ship, point);
 
-        public bool Attack(Point point) => GetOtherPlayer.Attack(point);
+        public string Attack(Point point) => GetOtherPlayer.Attack(point) ? "Hit" : "Miss";
 
         public bool NextPlayer()
         {
-            if (HasWon) return false;
             firstPlayer = !firstPlayer;
-            return true;
+            return !HasWon;
         }
         #endregion
     }
