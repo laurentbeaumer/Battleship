@@ -25,6 +25,3 @@ The APi is made to be used in a do...while loop:
 >// service.Attack(new Point() { Row = 1, Column = 2} )
 >}
 >while (service.NextPlayer()); // Will return false if the player has won.
-
-
-
