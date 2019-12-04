@@ -51,4 +51,4 @@ while (service.NextPlayer()); // Will return false if the player has won.
 ```
 The code will throw an exception if the "attacked" position is outside the board, or by adding a ship where it doesn't fit, or on the top of an existing ship.
 
-I advise when calling the methods "AddShip" and "Attack" within a try/catch blocks, and show the error message to the user.
+I advise to call the methods "AddShip" and "Attack" within a try/catch blocks, and show the error message to the user.
