@@ -10,7 +10,7 @@ namespace BattleshipUnitTests
         [TestMethod]
         public void TestToString()
         {
-            Assert.AreEqual(new Point { Row = 2, Column = 4 }.ToString(), "{2, 4}");
+            Assert.AreEqual(new Point { Row = 2, Column = 4 }.ToString(), "[2,4]");
         }
     }
 }
