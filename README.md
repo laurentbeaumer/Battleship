@@ -7,9 +7,11 @@ The board of a player is hidden from the other player.
 
 Once all the ships have been placed, the game can start.
 
-Each Player attacks one position on each turn. They et a "hit" when an enemy ship is at that position, and a "miss" otherwise.
+The Player 1 attacks one position. The game says "hit" when an enemy ship has been hit, and a "miss" otherwise.
 
-The first player who have "hit" all the ship positions of the other player wins the game.
+Then Players 2 attacks one position, and so on.
+
+The first player who have all his/her ships hit has lost the game.
 
 ## How to use the API
 
