@@ -19,7 +19,7 @@ The code is provided as an API, and so will need to be contained in a service or
 
 You can add either "Battleship" project as a library or use the service.
 
-The APi is made to be used in a do...while loop:
+The APi is made to be used in while loops:
 
 ```C#
 var service = new BattleshipService();
