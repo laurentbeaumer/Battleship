@@ -7,7 +7,7 @@ The board of a player is hidden from the other player.
 
 Once all the ships have been placed, the game can start.
 
-The Player 1 attacks one position. The game says "hit" when an enemy ship has been hit, and a "miss" otherwise.
+The Player 1 attacks one position. The game says "hit" when an enemy ship has been hit, and "miss" otherwise.
 
 Then Players 2 attacks one position, and so on.
 
