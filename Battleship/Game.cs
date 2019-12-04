@@ -21,6 +21,8 @@
         private Player GetOtherPlayer => players[firstPlayer ? 0 : 1];
 
         public string CurrentPlayerName => string.Format("Player {0}", firstPlayer ? 1 : 2);
+
+        public bool HasWon => GetOtherPlayer.HasLost;
         #endregion
 
         #region Contructors
@@ -39,7 +41,7 @@
 
         public bool NextPlayer()
         {
-            if (GetOtherPlayer.HasLost) return false;
+            if (HasWon) return false;
             firstPlayer = !firstPlayer;
             return true;
         }

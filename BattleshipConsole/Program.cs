@@ -1,13 +1,14 @@
 ﻿namespace BattleshipConsole
 {
-    using Battleship;
+    using BattleshipService;
 
     class Program
     {
         static void Main(string[] args)
         {
+
             bool quit = false;
-            var game = new Game();
+            var service = new BattleshipService();
 
             // Loop "Player 1" to add ship
 
@@ -18,7 +19,7 @@
             {
 
             }
-            while (!quit && game.NextPlayer()); 
+            while (!quit && service.NextPlayer()); 
             // Either players decide to quit, or one of other player has lost during the turn
 
             // Display result to players

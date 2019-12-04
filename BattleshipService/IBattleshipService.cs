@@ -6,9 +6,11 @@
     {
         void NewGame();
 
-        void NextPlayer();
+        bool NextPlayer();
 
         string CurrentPlayerName { get; }
+
+        bool HasWon { get; }
 
         void AddShip(Ship ship, Point point);
 
