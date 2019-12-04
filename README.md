@@ -11,7 +11,7 @@ The Player 1 attacks one position. The game says "hit" when an enemy ship has be
 
 Then Players 2 attacks one position, and so on.
 
-The first player who have all his/her ships hit has lost the game.
+The first player who have all his/her ships sunk (i.e. every position with a ship has been hit) has lost the game .
 
 ## How to use the API
 
