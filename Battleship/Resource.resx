@@ -123,6 +123,9 @@
   <data name="ExceptionShipOutOfBoard" xml:space="preserve">
     <value>"Ship doesn't fit for on the board"</value>
   </data>
+  <data name="ExceptionSquareAlreadyHit" xml:space="preserve">
+    <value>"You have already attach that position: {0}"</value>
+  </data>
   <data name="ExceptionSquareIsOccupied" xml:space="preserve">
     <value>"There is already a ship on this placement: {0}"</value>
   </data>

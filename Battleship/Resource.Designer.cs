@@ -79,6 +79,15 @@ namespace Battleship {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;You have already attach that position: {0}&quot;.
+        /// </summary>
+        internal static string ExceptionSquareAlreadyHit {
+            get {
+                return ResourceManager.GetString("ExceptionSquareAlreadyHit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;There is already a ship on this placement: {0}&quot;.
         /// </summary>
         internal static string ExceptionSquareIsOccupied {

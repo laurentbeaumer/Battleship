@@ -50,11 +50,13 @@ namespace Battleship
         public bool Attack(Point point)
         {
             CheckPoint(point);
-            var occupied = ships[point.Row - 1, point.Column - 1];
-            var hit = hits[point.Row - 1, point.Column - 1];
-            if (occupied && !hit) hitpoints--; // Every successful first hit decrease the points of the player
+            if (hits[point.Row - 1, point.Column - 1])
+                throw new ArgumentException(string.Format(Resource.ExceptionSquareAlreadyHit, point.ToString()));
+
             hits[point.Row - 1, point.Column - 1] = true;
-            return occupied;
+            if (!ships[point.Row - 1, point.Column - 1]) return false;
+            hitpoints--; // Every successful first hit decrease the points of the player
+            return true;
         }
         #endregion
 
