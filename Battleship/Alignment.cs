@@ -1,6 +1,6 @@
 ﻿namespace Battleship
 {
-    public enum Orientation
+    public enum Alignment
     {
         Horizontal,
 

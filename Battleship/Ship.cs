@@ -2,7 +2,7 @@
 {
     public class Ship
     {
-        public Orientation Orientation = Orientation.Vertical;
+        public Alignment Alignment = Alignment.Vertical;
 
         public int Length = 1;
     }

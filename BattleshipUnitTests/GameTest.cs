@@ -32,8 +32,8 @@ namespace BattleshipUnitTests
         {
             var game = new Game();
             Debug.Print(game.CurrentPlayerName);
-            game.AddShip(new Ship { Orientation = Orientation.Horizontal, Length = 3 }, new Point { Row = 1, Column = 1 });
-            game.AddShip(new Ship { Orientation = Orientation.Horizontal, Length = 1 }, new Point { Row = 1, Column = 3 });
+            game.AddShip(new Ship { Alignment = Alignment.Horizontal, Length = 3 }, new Point { Row = 1, Column = 1 });
+            game.AddShip(new Ship { Alignment = Alignment.Horizontal, Length = 1 }, new Point { Row = 1, Column = 3 });
         }
 
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
@@ -42,7 +42,7 @@ namespace BattleshipUnitTests
         {
             var game = new Game();
             Debug.Print(game.CurrentPlayerName);
-            game.AddShip(new Ship { Orientation = Orientation.Horizontal, Length = 2 }, new Point { Row = 10, Column = 10 });
+            game.AddShip(new Ship { Alignment = Alignment.Horizontal, Length = 2 }, new Point { Row = 10, Column = 10 });
         }
 
         [TestMethod]
@@ -50,12 +50,12 @@ namespace BattleshipUnitTests
         {
             var game = new Game();
             Debug.Print(game.CurrentPlayerName);
-            game.AddShip(new Ship { Orientation = Orientation.Horizontal, Length = 3 }, new Point { Row = 1, Column = 1 });
-            game.AddShip(new Ship { Orientation = Orientation.Horizontal, Length = 1 }, new Point { Row = 2, Column = 1 });
+            game.AddShip(new Ship { Alignment = Alignment.Horizontal, Length = 3 }, new Point { Row = 1, Column = 1 });
+            game.AddShip(new Ship { Alignment = Alignment.Horizontal, Length = 1 }, new Point { Row = 2, Column = 1 });
 
             game.NextPlayer();
             Debug.Print(game.CurrentPlayerName);
-            game.AddShip(new Ship { Orientation = Orientation.Vertical, Length = 2 }, new Point { Row = 1, Column = 2 });
+            game.AddShip(new Ship { Alignment = Alignment.Vertical, Length = 2 }, new Point { Row = 1, Column = 2 });
 
             game.NextPlayer();
             Debug.Print(game.CurrentPlayerName);

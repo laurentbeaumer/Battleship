@@ -37,10 +37,10 @@ namespace Battleship
             CheckShip(ship, point);
             CheckSquareOccupied(ship, point);
 
-            if (ship.Orientation == Orientation.Vertical)
+            if (ship.Alignment == Alignment.Vertical)
                 for (var row = point.Row - 1; row < point.Row + ship.Length - 1; row++)
                     ships[row, point.Column - 1] = true;
-            else if (ship.Orientation == Orientation.Horizontal)
+            else if (ship.Alignment == Alignment.Horizontal)
                 for (var col = point.Column - 1; col < point.Column + ship.Length - 1; col++)
                     ships[point.Row - 1, col] = true;
 
@@ -73,20 +73,20 @@ namespace Battleship
         private void CheckShip(Ship ship, Point point)
         {
             // Check if the Ship fits on the board
-            if (ship.Orientation == Orientation.Vertical && (point.Row + ship.Length - 1) > Size
-                || ship.Orientation == Orientation.Horizontal && (point.Column + ship.Length - 1) > Size)
+            if (ship.Alignment == Alignment.Vertical && (point.Row + ship.Length - 1) > Size
+                || ship.Alignment == Alignment.Horizontal && (point.Column + ship.Length - 1) > Size)
                 throw new ArgumentOutOfRangeException(Resource.ExceptionShipOutOfBoard); // Make the error message more useful
         }
 
         private void CheckSquareOccupied(Ship ship, Point point)
         {
-            if (ship.Orientation == Orientation.Vertical)
+            if (ship.Alignment == Alignment.Vertical)
                 for (var row = point.Row - 1; row < point.Row + ship.Length - 1; row++)
                     if (ships[row, point.Column - 1])
                         throw new ArgumentOutOfRangeException(
                             string.Format(Resource.ExceptionSquareIsOccupied, point.ToString()));
 
-            if (ship.Orientation == Orientation.Horizontal)
+            if (ship.Alignment == Alignment.Horizontal)
                 for (var col = point.Column - 1; col < point.Column + ship.Length - 1; col++)
                     if (ships[point.Row - 1, col])
                         throw new ArgumentOutOfRangeException(
