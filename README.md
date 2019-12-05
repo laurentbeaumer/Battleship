@@ -41,7 +41,7 @@ while(!quit && !finished)
 }
 service.NextPlayer();
 
-// Player 1 start attacking
+// Player 1 starts attacking
 do
 {
   // Get user's input
