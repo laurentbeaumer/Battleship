@@ -19,7 +19,7 @@ The code is provided as an API, and so will need to be contained in a service or
 
 You can add either "Battleship" project as a library or use the service.
 
-The APi is made to be used in while loops:
+The API is made to be used in while loops:
 
 ```C#
 var service = new BattleshipService();
@@ -41,7 +41,7 @@ while(!quit && !finished)
 }
 service.NextPlayer();
 
-// Player 1 start attacking
+// Player 1 starts attacking
 do
 {
   // Get user's input
@@ -49,6 +49,6 @@ do
 }
 while (!quit && service.NextPlayer()); // Will return false if the player has won.
 ```
-The code will throw an exception if the "attacked" position is outside the board, or by adding a ship where it doesn't fit, or on the top of an existing ship.
+The code will throw an exception if the "attacked" position is outside the board or already hit, or by adding a ship where it doesn't fit, or on the top of an existing ship.
 
 I advise to call the methods "AddShip" and "Attack" within a try/catch blocks, and show the error message to the user.
