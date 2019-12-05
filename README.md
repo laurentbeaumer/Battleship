@@ -26,7 +26,7 @@ var service = new BattleshipService();
 bool finished, quit;
 
 //  Add ships player 1
-while(!finished) 
+while(!quit && !finished) 
 {
   // Get user's input
   // service.AddShip(new Ship() { ... }, new Point { ... } );
