@@ -18,7 +18,6 @@ namespace BattleshipUnitTests
             Debug.Print(game.Attack(new Point { Row = 1, Column = 1 }));
         }
 
-
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         [TestMethod]
         public void TestPointOutOfRange()
